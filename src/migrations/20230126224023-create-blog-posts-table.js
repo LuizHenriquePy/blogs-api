@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.DATE,
       },
       updated: {
-        typeof: Sequelize.DATE,
+        type: Sequelize.DATE,
       },
       userId: {
         field: 'user_id',
