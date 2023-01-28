@@ -31,7 +31,9 @@
     "posttest": "npm run kill:test",
     "test-coverage": "jest -i --verbose --forceExit --coverage",
     "debug": "nodemon .",
-    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json .",
+    "docker": "docker exec -it blogs_api bash",
+    "test:unit": "nyc --all --include src/models --include src/services --include src/controllers --include src/middlewares mocha --watch tests/unit/**/*.js"
   },
   "devDependencies": {
     "chai": "^4.3.7",
