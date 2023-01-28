@@ -34,6 +34,7 @@
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
   },
   "devDependencies": {
+    "chai": "^4.3.7",
     "change-case": "4.1.2",
     "eslint": "6.8.0",
     "eslint-config-airbnb-base": "14.2.0",
@@ -42,9 +43,12 @@
     "frisby": "2.1.2",
     "jest": "26.0.1",
     "jest-each": "28.0.1",
+    "mocha": "^10.2.0",
     "nodemon": "2.0.15",
+    "nyc": "^15.1.0",
     "sequelize-cli": "6.2.0",
     "sequelize-jest-helpers-trybe": "1.0.0",
+    "sinon": "^15.0.1",
     "supertest": "4.0.2",
     "wait-on": "6.0.1"
   }
