@@ -33,7 +33,7 @@
     "debug": "nodemon .",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json .",
     "docker": "docker exec -it blogs_api bash",
-    "test:unit": "nyc --all --include src/models --include src/services --include src/controllers --include src/middlewares mocha --watch tests/unit/**/*.js"
+    "test:unit": "nyc --all --include src/models --include src/services --include src/controllers --include src/middlewares mocha --watch tests/unit/**/*.test.js"
   },
   "devDependencies": {
     "chai": "^4.3.7",

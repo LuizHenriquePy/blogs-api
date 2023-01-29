@@ -3,5 +3,15 @@
   "extends": ["trybe-backend"],
   "rules": {
     "sonarjs/no-duplicate-string": ["error", 5]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.{test,spec}.js"],
+      "rules": {
+        "max-lines-per-function": "off",
+        "prefer-arrow-callback": "off",
+        "func-names": "off"
+      }
+    }
+  ]
 }
