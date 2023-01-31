@@ -6,7 +6,9 @@ class ErrorGenerator extends Error {
   }
 } 
 
-const types = {};
+const types = {
+  BAD_REQUEST: 400,
+};
 
 module.exports = {
   types,
