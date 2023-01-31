@@ -33,10 +33,12 @@
     "debug": "nodemon .",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json .",
     "docker": "docker exec -it blogs_api bash",
-    "test:unit": "nyc --all --include src/models --include src/services --include src/controllers --include src/middlewares mocha --watch tests/unit/**/*.test.js"
+    "test:unit": "nyc --all --include src/models --include src/services --include src/controllers --include src/middlewares mocha --watch tests/unit/**/*.test.js",
+    "test:integration": "mocha --watch --timeout 20000 tests/integration/*.test.js"
   },
   "devDependencies": {
     "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
     "change-case": "4.1.2",
     "eslint": "6.8.0",
     "eslint-config-airbnb-base": "14.2.0",

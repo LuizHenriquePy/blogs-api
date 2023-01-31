@@ -11,7 +11,8 @@
         "max-lines-per-function": "off",
         "prefer-arrow-callback": "off",
         "func-names": "off",
-        "no-unused-expressions": "off"
+        "no-unused-expressions": "off",
+        "sonarjs/cognitive-complexity": "off"
       }
     }
   ]
