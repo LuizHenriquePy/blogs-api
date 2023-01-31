@@ -1,4 +1,4 @@
-const { loginRouter } = require('./login.router');
+const loginRouter = require('./login.router');
 
 module.exports = {
   loginRouter,
