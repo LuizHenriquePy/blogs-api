@@ -1,6 +1,5 @@
 const userModel = (sequelize, dataTypes) => {
   const user = sequelize.define('User', {
-    id: dataTypes.INTEGER,
     displayName: dataTypes.STRING,
     email: dataTypes.STRING,
     image: dataTypes.STRING,
@@ -9,6 +8,7 @@ const userModel = (sequelize, dataTypes) => {
   {
     underscored: true,
     tableName: 'users',
+    timestamps: false,
   }
   );
 
