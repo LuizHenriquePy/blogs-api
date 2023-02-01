@@ -1,7 +1,7 @@
 const { User } = require('../models');
 
 const { ErrorGenerator, types } = require('../utils/errorSettings');
-const { createToken } = require('../utils/JWT');
+const jwt = require('../utils/JWT');
 const { isFieldsAreValid } = require('./validations/loginService.validation');
 
 const login = async (email, password) => {
@@ -12,7 +12,7 @@ const login = async (email, password) => {
   const user = await User.findOne({ where: { email, password } });
   if (!user) throw new ErrorGenerator(types.BAD_REQUEST, 'Invalid fields');
 
-  const token = createToken({ email });
+  const token = jwt.createToken({ email });
 
   return token;
 };
