@@ -9,6 +9,8 @@ class ErrorGenerator extends Error {
 const types = {
   BAD_REQUEST: 400,
   CONFLICT: 409,
+  NOT_FOUND: 404,
+  UNAUTHENTICATED: 401,
 };
 
 module.exports = {
