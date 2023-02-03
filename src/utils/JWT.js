@@ -3,13 +3,20 @@ const jwt = require('jsonwebtoken');
 const secretKey = process.env.JWT_SECRET;
 
 const jwtConfig = {
-  expiresIn: '1m',
+  expiresIn: '1d',
   algorithm: 'HS256',
 };
 
 const createToken = (data) => jwt.sign({ data }, secretKey, jwtConfig);
 
-const decodeToken = (token) => jwt.verify(token, secretKey);
+const decodeToken = (token) => {
+  try {
+      const result = jwt.verify(token, secretKey);
+      return result;
+  } catch (error) {
+    return { error };
+  }
+};
 
 module.exports = {
   createToken,
