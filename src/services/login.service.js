@@ -9,7 +9,7 @@ const login = async (email, password) => {
   if (!isValid) {
     throw new ErrorGenerator(types.BAD_REQUEST, 'Some required fields are missing');
   }
-  const user = await User.findOne({ where: { email, password } });
+  const user = await User.findOne({ where: { email } });
   if (!user) throw new ErrorGenerator(types.BAD_REQUEST, 'Invalid fields');
 
   const token = jwt.createToken({ email });
