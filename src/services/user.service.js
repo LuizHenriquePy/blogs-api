@@ -1,12 +1,10 @@
-const Sequelize = require('sequelize');
 const { ErrorGenerator, types } = require('../utils/errorSettings');
-const { isFieldsAreValid, isAnExistingUser } = require('./validations/userService.validation');
-const config = require('../config/config');
+const {
+  isFieldsAreValid,
+  isAnExistingUser,
+  } = require('./validations/userService.validation');
 const { User } = require('../models');
 const { createToken } = require('../utils/JWT');
-
-const env = process.env.NODE_ENV || 'development';
-const sequelize = new Sequelize(config[env]);
 
 const addUser = async (displayName, password, email, image) => {
   const isValid = isFieldsAreValid(displayName, password, email, image);
@@ -16,16 +14,17 @@ const addUser = async (displayName, password, email, image) => {
   if (isExist) throw new ErrorGenerator(types.CONFLICT, 'User already registered');
   const newUser = { displayName, email, password };
   if (image) newUser.image = image;
-  const user = await sequelize.transaction(async (t) => {
-    const id = User.create(newUser, { transaction: t });
-    const result = User.findOne({
-      where: { id }, attributes: { exclude: ['password'] } }, { transaction: t });
-    return result;
-  });
-  const token = createToken(user);
+  await User.create(newUser);
+  const token = createToken({ email });
   return token;
+};
+
+const getUsers = async () => {
+  const users = await User.findAll({ attributes: { exclude: ['password'] } });
+  return users;
 };
 
 module.exports = {
   addUser,
+  getUsers,
 };
