@@ -2,6 +2,7 @@ const { ErrorGenerator, types } = require('../utils/errorSettings');
 const {
   isFieldsAreValid,
   isAnExistingUser,
+  idSchema,
   } = require('./validations/userService.validation');
 const { User } = require('../models');
 const { createToken } = require('../utils/JWT');
@@ -24,7 +25,16 @@ const getUsers = async () => {
   return users;
 };
 
+const getUser = async (id) => {
+  const { error } = idSchema.validate(id);
+  if (error) throw new ErrorGenerator(types.BAD_REQUEST, error.message);
+  const user = await User.findOne({ where: { id }, attributes: { exclude: ['password'] } });
+  if (!user) throw new ErrorGenerator(types.NOT_FOUND, 'User does not exist');
+  return user;
+};
+
 module.exports = {
   addUser,
   getUsers,
+  getUser,
 };

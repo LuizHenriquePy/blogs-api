@@ -30,7 +30,10 @@ const isAnExistingUser = async (email) => {
   return false;
 };
 
+const idSchema = joi.number().integer().min(1).required();
+
 module.exports = {
   isFieldsAreValid,
   isAnExistingUser,
+  idSchema,
 };
