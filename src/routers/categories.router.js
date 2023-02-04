@@ -14,5 +14,10 @@ router.post(
   validateAddCategoryMiddleware,
   categoriesController.addCategory,
 );
+router.get(
+  '/',
+  validateTokenMiddleware,
+  categoriesController.getCategories,
+);
 
 module.exports = router;
