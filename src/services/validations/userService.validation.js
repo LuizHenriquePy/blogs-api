@@ -14,7 +14,14 @@ const imageSchema = joi.string().min(1);
 
 const isFieldsAreValid = (displayName, password, email, image) => {
   const displayNameValidate = displayNameSchema.validate(displayName);
-  if (displayNameValidate.error) return displayNameSchema;
+  console.log();
+  if (displayNameValidate.error) {
+    return {
+      error: {
+      message: displayNameValidate.error.details[0].message,
+    },
+  }; 
+}
   const passwordValidate = passwordSchema.validate(password);
   if (passwordValidate.error) return passwordValidate;
   const emailValidate = emailSchema.validate(email);
