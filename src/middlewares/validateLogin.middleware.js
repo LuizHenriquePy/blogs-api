@@ -5,6 +5,5 @@ module.exports = (req, _res, next) => {
   if (!email || !password) {
     throw new ErrorGenerator(types.BAD_REQUEST, 'Some required fields are missing'); 
   }
-  console.log('passou pelo middleware');
   return next();
 };

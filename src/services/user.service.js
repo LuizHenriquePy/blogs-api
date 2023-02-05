@@ -9,7 +9,6 @@ const { createToken } = require('../utils/JWT');
 
 const addUser = async (displayName, password, email, image) => {
   const isValid = isFieldsAreValid(displayName, password, email, image);
-  console.log(isValid.error);
   if (isValid.error) throw new ErrorGenerator(types.BAD_REQUEST, isValid.error.message);
   const isExist = await isAnExistingUser(email);
   if (isExist) throw new ErrorGenerator(types.CONFLICT, 'User already registered');
