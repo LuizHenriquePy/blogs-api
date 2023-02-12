@@ -3,6 +3,7 @@ const validateLoginMiddleware = require('./validateLogin.middleware');
 const validateAddUserMiddleware = require('./validateAddUser.middleware');
 const validateTokenMiddleware = require('./validateToken.middleware');
 const validateAddCategoryMiddleware = require('./validateAddCategory.middleware');
+const validateAddPostMiddleware = require('./validateAddPost.middleware');
 
 module.exports = {
   errorHandlerMiddleware,
@@ -10,4 +11,5 @@ module.exports = {
   validateAddUserMiddleware,
   validateTokenMiddleware,
   validateAddCategoryMiddleware,
+  validateAddPostMiddleware,
 };

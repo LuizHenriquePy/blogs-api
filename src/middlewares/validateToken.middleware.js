@@ -10,6 +10,7 @@ module.exports = async (req, _res, next) => {
     if (result.error) throw new ErrorGenerator(types.UNAUTHENTICATED, 'Expired or invalid token');
     const user = await User.findOne({ where: { email: result.data.email } });
     if (!user) throw new ErrorGenerator(types.UNAUTHENTICATED, 'Invalid token');
+    req.body.userId = user.dataValues.id;
     return next();
   } catch (error) {
     next(error);

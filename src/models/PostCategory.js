@@ -1,22 +1,22 @@
 const postCategoryModel = (sequelize, dataTypes) => {
   const PostCategory = sequelize.define('PostCategory',
-  {
-    postId: {
-      type: dataTypes.INTEGER,
-      primaryKey: true,
-      foreignKey: true,
+    {
+      postId: {
+        type: dataTypes.INTEGER,
+        primaryKey: true,
+        foreignKey: true,
+      },
+      categoryId: {
+        type: dataTypes.INTEGER,
+        primaryKey: true,
+        foreignKey: true,
+      }
     },
-    categoryId: {
-      type: dataTypes.INTEGER,
-      primaryKey: true,
-      foreignKey: true,
+    {
+      underscored: true,
+      tableName: 'posts_categories',
+      timestamps: false,
     }
-  },
-  {
-    underscored: true,
-    tableName: 'categories',
-    timestamps: false,
-  }
   );
 
   PostCategory.associate = (models) => {

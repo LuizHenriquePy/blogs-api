@@ -11,11 +11,11 @@ const categoryModel = (sequelize, dataTypes) => {
       type: dataTypes.STRING,
     }
   },
-  {
-    underscored: true,
-    tableName: 'categories',
-    timestamps: false,
-  });
+    {
+      underscored: true,
+      tableName: 'categories',
+      timestamps: false,
+    });
 
   return category;
 };
