@@ -4,7 +4,6 @@ const router = express.Router();
 
 const {
   validateTokenMiddleware,
-  validateAddPostMiddleware,
   validateUpdatePostMiddleware } = require('../middlewares');
 const { postController } = require('../controllers');
 
