@@ -29,7 +29,20 @@ const listPosts = async (userId) => {
   return posts;
 };
 
+const listPostById = async (userId, id) => {
+  const post = await BlogPost.findOne({
+    include: [
+      { model: User, as: 'user', attributes: { exclude: 'password' } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+    where: { userId, id },
+  });
+  if (!post) throw new ErrorGenerator(types.NOT_FOUND, 'Post does not exist');
+  return post;
+};
+
 module.exports = {
   addPost,
   listPosts,
+  listPostById,
 };

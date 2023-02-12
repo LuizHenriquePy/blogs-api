@@ -20,7 +20,19 @@ const listPosts = async (req, res, next) => {
     next();
   }
 };
+
+const listPostById = async (req, res, next) => {
+  try {
+    const { userId } = req;
+    const { id } = req.params;
+    const post = await postService.listPostById(userId, id);
+    res.status(200).json(post);
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports = {
   addPost,
   listPosts,
+  listPostById,
 };
