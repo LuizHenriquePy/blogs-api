@@ -8,12 +8,6 @@ const {
   validateUpdatePostMiddleware } = require('../middlewares');
 const { postController } = require('../controllers');
 
-router.post(
-  '/',
-  validateTokenMiddleware,
-  validateAddPostMiddleware,
-  postController.addPost,
-);
 router.get(
   '/',
   validateTokenMiddleware,
