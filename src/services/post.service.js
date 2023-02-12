@@ -1,4 +1,4 @@
-const { Category, BlogPost, PostCategory } = require('../models');
+const { Category, BlogPost, PostCategory, User } = require('../models');
 const { ErrorGenerator, types } = require('../utils/errorSettings');
 
 const addPost = async (title, content, categoryIds, userId) => {
@@ -18,6 +18,18 @@ const addPost = async (title, content, categoryIds, userId) => {
   return post;
 };
 
+const listPosts = async (userId) => {
+  const posts = await BlogPost.findAll({
+    include: [
+      { model: User, as: 'user', attributes: { exclude: 'password' } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+    where: { userId },
+  });
+  return posts;
+};
+
 module.exports = {
   addPost,
+  listPosts,
 };

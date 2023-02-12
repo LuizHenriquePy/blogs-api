@@ -11,5 +11,10 @@ router.post(
   validateAddPostMiddleware,
   postController.addPost,
 );
+router.get(
+  '/',
+  validateTokenMiddleware,
+  postController.listPosts,
+);
 
 module.exports = router;
