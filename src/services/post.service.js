@@ -41,8 +41,16 @@ const listPostById = async (userId, id) => {
   return post;
 };
 
+const updatePost = async (userId, id, title, content) => {
+  const [postId] = await BlogPost.update({ title, content }, { where: { userId, id } });
+  if (postId === 0) throw new ErrorGenerator(types.UNAUTHENTICATED, 'Unauthorized user');
+  const post = await listPostById(userId, postId);
+  return post;
+};
+
 module.exports = {
   addPost,
   listPosts,
   listPostById,
+  updatePost,
 };

@@ -2,7 +2,10 @@ const express = require('express');
 
 const router = express.Router();
 
-const { validateTokenMiddleware, validateAddPostMiddleware } = require('../middlewares');
+const {
+  validateTokenMiddleware,
+  validateAddPostMiddleware,
+  validateUpdatePostMiddleware } = require('../middlewares');
 const { postController } = require('../controllers');
 
 router.post(
@@ -20,6 +23,12 @@ router.get(
   '/:id',
   validateTokenMiddleware,
   postController.listPostById,
+);
+router.put(
+  '/:id',
+  validateTokenMiddleware,
+  validateUpdatePostMiddleware,
+  postController.updatePost,
 );
 
 module.exports = router;
