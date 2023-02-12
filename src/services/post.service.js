@@ -48,9 +48,16 @@ const updatePost = async (userId, id, title, content) => {
   return post;
 };
 
+const deletePost = async (userId, id) => {
+  await listPostById(userId, id);
+  const result = await BlogPost.destroy({ where: { userId, id } });
+  if (result === 0) throw new ErrorGenerator(types.UNAUTHENTICATED, 'Unauthorized user');
+};
+
 module.exports = {
   addPost,
   listPosts,
   listPostById,
   updatePost,
+  deletePost,
 };
