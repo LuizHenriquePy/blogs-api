@@ -4,8 +4,16 @@ const router = express.Router();
 
 const {
   validateTokenMiddleware,
-  validateUpdatePostMiddleware } = require('../middlewares');
+  validateUpdatePostMiddleware,
+  validateAddPostMiddleware } = require('../middlewares');
 const { postController } = require('../controllers');
+
+router.post(
+  '/',
+  validateTokenMiddleware,
+  validateAddPostMiddleware,
+  postController.addPost,
+);
 
 router.get(
   '/',

@@ -2,12 +2,11 @@ const { Category, BlogPost, PostCategory, User } = require('../models');
 const { ErrorGenerator, types } = require('../utils/errorSettings');
 
 const addPost = async (title, content, categoryIds, userId) => {
-  categoryIds.forEach(async (id) => {
-    const category = await Category.findOne({ where: { id } });
-    if (!category) {
-      throw new ErrorGenerator(types.BAD_REQUEST, 'one or more "categoryIds" not found');
-    }
-  });
+  const validateCategories = await Promise.all(categoryIds
+    .map((id) => Category.findOne({ where: { id } })));
+  if (validateCategories.includes(null)) {
+    throw new ErrorGenerator(types.BAD_REQUEST, 'one or more "categoryIds" not found');
+  }
   const dateNow = new Date();
   const post = await BlogPost.create({
     userId, title, content, published: dateNow, updated: dateNow,
@@ -49,9 +48,12 @@ const updatePost = async (userId, id, title, content) => {
 };
 
 const deletePost = async (userId, id) => {
-  await listPostById(userId, id);
-  const result = await BlogPost.destroy({ where: { userId, id } });
-  if (result === 0) throw new ErrorGenerator(types.UNAUTHENTICATED, 'Unauthorized user');
+  const post = await BlogPost.findOne({ where: { id } });
+  if (!post) throw new ErrorGenerator(types.NOT_FOUND, 'Post does not exist');
+  await BlogPost.destroy({ where: { userId, id } });
+  if (post.dataValues.userId !== userId) {
+    throw new ErrorGenerator(types.UNAUTHENTICATED, 'Unauthorized user');
+  }
 };
 
 module.exports = {
