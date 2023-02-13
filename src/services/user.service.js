@@ -3,7 +3,7 @@ const {
   isFieldsAreValid,
   isAnExistingUser,
   idSchema,
-  } = require('./validations/userService.validation');
+} = require('./validations/userService.validation');
 const { User } = require('../models');
 const { createToken } = require('../utils/JWT');
 
@@ -32,8 +32,13 @@ const getUser = async (id) => {
   return user;
 };
 
+const deleteUser = async (id) => {
+  await User.destroy({ where: { id } });
+};
+
 module.exports = {
   addUser,
   getUsers,
   getUser,
+  deleteUser,
 };
