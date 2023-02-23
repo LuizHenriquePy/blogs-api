@@ -1,5 +1,10 @@
+const Sequelize = require('sequelize');
 const { Category, BlogPost, PostCategory, User } = require('../models');
 const { ErrorGenerator, types } = require('../utils/errorSettings');
+const config = require('../config/config');
+
+const env = process.env.NODE_ENV || 'development';
+const sequelize = new Sequelize(config[env]);
 
 const addPost = async (title, content, categoryIds, userId) => {
   const validateCategories = await Promise.all(categoryIds
@@ -8,13 +13,20 @@ const addPost = async (title, content, categoryIds, userId) => {
     throw new ErrorGenerator(types.BAD_REQUEST, 'one or more "categoryIds" not found');
   }
   const dateNow = new Date();
-  const post = await BlogPost.create({
-    userId, title, content, published: dateNow, updated: dateNow,
-  });
-  categoryIds.forEach(async (id) => {
-    await PostCategory.create({ postId: post.dataValues.id, categoryId: id });
-  });
-  return post;
+  const t = await sequelize.transaction();
+  try {
+    const post = await BlogPost.create({
+      userId, title, content, published: dateNow, updated: dateNow,
+    },
+      { transaction: t });
+    await Promise.all(categoryIds.map((id) => PostCategory
+      .create({ postId: post.dataValues.id, categoryId: id }, { transaction: t })));
+    await t.commit();
+    return post;
+  } catch (error) {
+    await t.rollback();
+    throw new Error(error.message);
+  }
 };
 
 const listPosts = async (userId) => {
