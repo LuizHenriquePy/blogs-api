@@ -1,5 +1,5 @@
 ## Sumário
-- [Motivação](#motivação)
+- [Sobre e motivação](#sobre-e-motivação)
 - [Tecnologias usadas](#tecnologias-usadas)
 - [Como executar o projeto](#como-executar-o-projeto)
 - [Documentação](#documentação)
@@ -19,8 +19,9 @@
     - [\> Endpoint DELETE /user/me:](#-endpoint-delete-userme)
 - [Créditos](#créditos)
 
-# Motivação
-O objetivo ao desenvolver esse projeto foi estudar ORM e **JWT**. Para estudar ORM escolhi **Sequelize** visto que é uma tecnologia bem estabelecida no mercado.
+# Sobre e motivação
+O projeto é um API para gerênciar posts, categories e escritores(users) de um blog.
+O objetivo foi estudar ORM e **JWT**. Para estudar ORM escolhi **Sequelize** visto que é uma tecnologia bem estabelecida no mercado.
 Neste projeto pude entender que:
 -  **Migrations** são uma maneira de evoluir a estrutura da banco de dados (tabelas, colunas e relacionamentos) de forma organizada, segura e produtiva;
 - **Seeds** são muito úteis para testes ou pré-popular o banco de dados;
