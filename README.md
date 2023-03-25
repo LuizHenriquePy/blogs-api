@@ -1,6 +1,6 @@
-## Sumário
+## Índice
 - [Sobre e motivação](#sobre-e-motivação)
-- [Tecnologias usadas](#tecnologias-usadas)
+- [Tecnologias utilizadas](#tecnologias-usadas)
 - [Como executar o projeto](#como-executar-o-projeto)
 - [Documentação](#documentação)
   - [Estrutura do projeto](#estrutura-do-projeto)
@@ -30,7 +30,7 @@ Neste projeto pude entender que:
 - **JWT** é usado para garantir a integridade da mensagem. Garantido que ela não foi adulterada;
 - **Relacionamentos** (1:1, 1:N e N:N) até que são um pouco mais simples com ORM;
 
-# Tecnologias usadas
+# Tecnologias utilizadas
 - Sequelize
 - JavaScript
 - Docker
